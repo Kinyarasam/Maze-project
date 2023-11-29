@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
 SDL_FLAGS = $(shell sdl2-config --cflags --libs)
+LD_FLAGS = -lm
 
 SRCDIR = src
 BINDIR = bin
@@ -11,7 +12,7 @@ OBJECTS = $(SOURCES:$(SRCDIR)/%.c=$(BINDIR)/%.o)
 all: raycasting_game
 
 raycasting_game: $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^ $(SDL_FLAGS)
+	$(CC) $(CFLAGS) -o $@ $^ $(SDL_FLAGS) -lm
 
 $(BINDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(@D)
